@@ -21,9 +21,6 @@ const closeModal = function () {
 
 btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal))
 
-// for (let i = 0; i < btnsOpenModal.length; i++)
-//   btnsOpenModal[i].addEventListener('click', openModal);
-
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
@@ -35,52 +32,17 @@ document.addEventListener('keydown', function (e) {
 
 const header = document.querySelector(".header")
 const allSections = document.querySelectorAll(".section")
-// console.log(allSections)
 
-
-// const message = document.createElement("div")
-// message.classList.add("cookie-message") 
-// message.innerHTML = 'We use cookie . <button class = "btn btn--close-cookie"> Got it </button>'
-// header.prepend(message)
-// console.log(message)
 
 const btnscrollTo = document.querySelector(".btn--scroll-to")
 const section1 = document.querySelector("#section--1")
 
 btnscrollTo.addEventListener("click", function(e){
   const s1coords = section1.getBoundingClientRect();
-  // console.log(s1coords);
-
-  // console.log(e.target.getBoundingClientRect())
-  // console.log('current scroll x/y : ' , window.pageXOffset , window.pageYOffset)
-
-  // console.log("viewport : " , document.documentElement.clientHeight , document.documentElement.clientWidth)
-  
-  // window.scrollTo(s1coords.left + window.pageXOffset , s1coords.top + window.pageYOffset)
-
-  // window.scrollTo({
-  //   left : s1coords.left + window.pageXOffset,
-  //   top : s1coords.top + window.pageYOffset,
-  //   behavior : "smooth",
-  // })
-
   section1.scrollIntoView({behavior:"smooth"})
 })
 
-
-// document.querySelectorAll(".nav__link").forEach(function(el){
-//   el.addEventListener("click",function(e){
-//     e.preventDefault();
-//     const id = this.getAttribute("href")
-//     console.log(id)
-//     document.querySelector(id).scrollIntoView({behavior:"smooth"})
-//   })
-// })
-
-//Add event listener to the parent element.
-//This is the best method to apply event handler to the href.
 document.querySelector(".nav__links").addEventListener("click", function(e){
-  // console.log(e.target)
   e.preventDefault();
 
   if(e.target.classList.contains("nav__link")){
@@ -97,8 +59,6 @@ const tabsContent = document.querySelectorAll(".operations__content")
 
 tabsContainer.addEventListener("click", function(e){
   const click = e.target.closest(".operations__tab")
-
-  //Guard clause
 
   if(!click) return;
 
@@ -128,38 +88,14 @@ const handleOver = function(e){
   }
 }
 
-// nav.addEventListener("mouseover",function(e){
-//   handleOver(e , 0.5)
-// })
-
-// nav.addEventListener("mouseout",function(e){
-//   handleOver(e , 1)
-// })
-
-//Passing an argument to the event handler
 nav.addEventListener("mouseover", handleOver.bind(0.5))
 
 nav.addEventListener("mouseout",handleOver.bind(1))
-
-// const obsCallback = function(entries, observer){
-//   entries.forEach(entry => {
-//     console.log(entry)
-//   })
-// }
-
-// const obsOptions = {
-//   root : null,
-//   threshold : [0 , 0.2],
-// }
-
-// const observer = new IntersectionObserver(obsCallback,obsOptions);
-// observer.observe(section1);
 
 const navHeight =  nav.getBoundingClientRect().height;
 
 const stickyNav = function (entries) {
   const [entry] = entries;
-  // console.log(entry);
   if(!entry.isIntersecting)nav.classList.add("sticky");
   else nav.classList.remove("sticky")
 }
@@ -202,7 +138,6 @@ const loading = function (entries , observer){
   const [entry] = entries;
   if(!entry.isIntersecting) return;
 
-  //Replace src with data-src
   entry.target.src = entry.target.dataset.src;
 
   entry.target.addEventListener("load", function(){
@@ -290,21 +225,4 @@ dotsContainer.addEventListener("click", function(e){
     activateDot(slide)
   }
 })
-
-
-//Some event handler examples
-
-// document.addEventListener("DOMContentLoaded", function(e){
-//   console.log("HTML parsed and DOM tree built")
-// })
-
-// window.addEventListener("load", function(e){
-//   console.log("page fully loaded", e)
-// })
-
-// window.addEventListener("beforeunload", function(e){
-//   e.preventDefault();
-//   console.log(e)
-// })
-
 
